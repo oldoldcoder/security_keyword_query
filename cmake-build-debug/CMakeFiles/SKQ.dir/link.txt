@@ -1,0 +1,1 @@
+/usr/bin/gcc  -Wall -Wextra -g CMakeFiles/SKQ.dir/include/skq.c.o CMakeFiles/SKQ.dir/include/utils.c.o CMakeFiles/SKQ.dir/test/SKQ_test.c.o -o SKQ  /usr/lib/aarch64-linux-gnu/libssl.so /usr/lib/aarch64-linux-gnu/libcrypto.so 
