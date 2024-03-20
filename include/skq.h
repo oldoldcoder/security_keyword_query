@@ -15,7 +15,7 @@
 // 16位的AES的密钥
 #define AES_KEYWORD "42cb1661ebf50db9a9cd3f64ba7650e411e8d8029edbb3437bdb934f9890377e3f5f07d3c197054dd66ded53c65811c544aeb8eaad101e7a31250576fb7d4f28"
 #define RESULT int
-#define SUCCESS -4564
+#define SUCCESS 4564
 #define ERROR 165495
 #define TRUE 1
 #define FALSE 0
@@ -30,6 +30,8 @@ typedef struct data_owner{
     struct hashmap_s * hashmap_backward;
     // 数据拥有者拥有fileCnt
     struct hashmap_s * fileCnt;
+    // 序号
+    int i;
 }data_owner;
 /*-------------------------方法定义区--------------------------*/
 // 加密函数
@@ -41,8 +43,15 @@ inline void do_add_file_cnt(data_owner * doo,char *c);
 // 上传到服务器
 void skq_upload_data_2server(data_owner * doo);
 // 进行查询
-RESULT skq_search_wi_from_server(const unsigned char * key,int ** bitmap);
+RESULT skq_search_wi_from_server(char * word,int j ,struct hashmap_s *fileCnt,int ** bitmap);
 // 按位异或操作，按照长度短的进行异或操作
-RESULT skq_xor(const unsigned char * key,int * bitmap);
-
+RESULT skq_xor(char * key,int * bitmap);
+// 初始化一个data_owner
+RESULT skq_init_data_owner(data_owner * doo,int i);
+// 清空data_owner的内容
+RESULT skq_free_data_owner(data_owner * doo);
+// 读取内容然后到我们的data_owner里面去
+RESULT skq_read_file_2do(data_owner * doo ,char * fileDirectory);
+// 上传到服务器的setup算法;数据终究会上传到directMap中去
+RESULT skq_setup(data_owner * doo);
 #endif//SKQ_H

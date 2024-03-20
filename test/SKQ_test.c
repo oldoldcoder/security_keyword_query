@@ -4,6 +4,7 @@
 @desc:skq的测试罢了
 */
 #include "skq.h"
+#include "utils.h"
 
 int main(){
 
