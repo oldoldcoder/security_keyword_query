@@ -5,15 +5,19 @@
 */
 
 #include "stdio.h"
-#include <openssl/aes.h>
+#include <openssl/hmac.h>
 #include "string.h"
 #include "hashmap.h"
 #include "skq.h"
 #include "utils.h"
+
 struct hashmap_s * global_hashmap;
+const EVP_MD * MD;
 int is_init = FALSE;
-static void init_constant(){
+void init_constant(){
     if(is_init == FALSE){
+        MD = EVP_sha512();
+        global_hashmap = (struct hashmap_s *) malloc(sizeof (struct hashmap_s));
         // 初始化全局查询的map
         if( 0 != hashmap_create(INITIAL_SIZE,global_hashmap)){
             fprintf(stderr,"初始化global_hashmap失败\n");
@@ -22,45 +26,20 @@ static void init_constant(){
         is_init = TRUE;
     }
 }
-// 定义加密的aes函数
-static void encrypt_aes(const unsigned char *plaintext,char *key, unsigned char *ciphertext) {
-    AES_KEY aes_key;
-    AES_set_encrypt_key(key, 128, &aes_key);
-    AES_encrypt(plaintext, ciphertext, &aes_key);
-}
 
 // 加密函数
-RESULT skq_Fk_AES_encrypt( char * key,const unsigned char * plain, unsigned char * ciphertext){
+RESULT skq_Fk_AES_encrypt( char * key,const unsigned char * plain, unsigned char * ciphertext,unsigned int * len){
     if(plain == NULL || ciphertext == NULL){
         fprintf(stderr,"%s传递参数为空\n",__func__ );
         return ERROR;
     }
-    // 填充key值到128位
-    int len = (int )strlen(key);
-    if(len > 128){
-        fprintf(stderr,"传递的密钥长度过大\n");
-        return ERROR;
+    HMAC(MD, key, strlen(key), plain, strlen(plain), ciphertext, len);
+
+    if(*len == 0){
+        printf("未加密的原文:%s\n",plain);
+        fflush(stdout);
     }
-    if(len == 128){
-        fflush(stderr);
-        encrypt_aes(plain,key,ciphertext);
-        return SUCCESS;
-    }
-    // TODO 危险，这里copy字符串恐出问题
-    char * arr = (char * ) malloc(sizeof (char ) * 129);
-    for(int i = 0 ; i < len ; ++i){
-        arr[i] = key[i];
-    }
-    for(int i = len ; i < 128 ;  ++i){
-        arr[i] = AES_KEYWORD[i];
-    }
-    arr[128] = '\0';
-    fflush(stderr);
-    encrypt_aes(plain,arr,ciphertext);
     return SUCCESS;
-
-
-
 }
 // 正常迭代情况下返回0，需要删除的识货返回-1
 static int transfer_map(void* const context, struct hashmap_element_s* const e) {
@@ -110,7 +89,7 @@ RESULT skq_create_backward_index(data_owner * doo){
     return SUCCESS;
 }
 // do的filecnt + 1
-inline void do_add_file_cnt(struct hashmap_s * fileCnt,char *c){
+void do_add_file_cnt(struct hashmap_s * fileCnt,char *c){
     int * len = hashmap_get(fileCnt,c, strlen(c));
     if(len == NULL){
         len = (int *) malloc(sizeof (int));
@@ -127,17 +106,24 @@ void skq_upload_data_2server(data_owner * doo){
     printf("upload 成功");
 }
 // 对于传入字符串加密
-char * skq_Fk_AES_encrypt_o(char * word,struct hashmap_s *fileCnt,int j,int zn){
+char * skq_Fk_AES_encrypt_o(char * word,struct hashmap_s *fileCnt,int j,int zn,unsigned int *retLen){
     int wordL = strlen(word);
     int * a = hashmap_get(fileCnt,word,wordL);
+    // 如果读出来为空的时候，我们设置为一个0值重新放进去
+    if(a == NULL){
+        a = (int *) malloc(sizeof (int ));
+        * a = 0;
+        hashmap_put(fileCnt,word, strlen(word),a);
+    }
     char c1[12];
     char c2[12];
     sprintf(c1,"%d", *a);
     sprintf(c2,"%d",j);
     int aL = strlen(c1);
     int jL = strlen(c2);
-    int lastL = wordL + aL + jL + 1;
-    char * plain = (char * ) malloc(sizeof (char ) * (lastL + 1));
+    int lastL = wordL + aL + jL;
+    char * plain = (char * ) malloc(sizeof (char ) * (lastL + 2));
+
     for(int i = 0; i < lastL ; ++i){
         if(i < wordL){
             plain[i] = word[i];
@@ -147,33 +133,58 @@ char * skq_Fk_AES_encrypt_o(char * word,struct hashmap_s *fileCnt,int j,int zn){
             plain[i] = c2[i - wordL - aL];
         }
     }
-    plain[lastL - 2] = zn + '0';
-    plain[lastL - 1] = '\0';
-    char * cipherText = (char * ) malloc(sizeof (char ) * 129);
+//    for(int i = 0; i < lastL ; ++i){
+//        if(i < aL){
+//            plain[i] = c1[i];
+//        } else if(i < aL + jL){
+//            plain[i] = c2[i - aL - jL];
+//        }else{
+//            plain[i] = word[i];
+//        }
+//        if(i < wordL){
+//        }else if(i < (wordL + aL)){
+//            plain[i] = c1[i - wordL];
+//        }else{
+//            plain[i] = c2[i - wordL - aL];
+//        }
+//    }
+
+    plain[lastL] = zn + '0';
+    plain[lastL + 1] = '\0';
+    char * cipherText = (char * ) malloc(sizeof (char ) * EVP_MAX_MD_SIZE);
     // 进行加密
-    skq_Fk_AES_encrypt(AES_KEYWORD,(const unsigned char *)plain,(unsigned char *)cipherText);
+    skq_Fk_AES_encrypt(AES_KEYWORD,(const unsigned char *)plain,(unsigned char *)cipherText,retLen);
     return cipherText;
 }
 
 // 进行查询
 RESULT skq_search_wi_from_server(char * word,int j ,struct hashmap_s * fileCnt,int ** bitmap){
+
+
+    unsigned int len = 0;
     // 首先获得了第一个
-    char * cip1 = skq_Fk_AES_encrypt_o(word,fileCnt,j,0);
+    char * cip1 = skq_Fk_AES_encrypt_o(word,fileCnt,j,0,&len);
+
+    // 将cip1按照len值把二进制给她转换成字符串
+    unsigned int cip1L = len;
     // TODO word转换为key的流程
-    *bitmap = hashmap_get(global_hashmap,cip1, strlen(cip1));
+    *bitmap = hashmap_get(global_hashmap,cip1, cip1L);
     if(*bitmap == NULL){
         fprintf(stderr,"查询出错,未找到bitmap");
         fflush(stderr);
         return ERROR;
     }
+    char * cip2 = skq_Fk_AES_encrypt_o(word,fileCnt,j,1,&len);
 
-    char * cip2 = skq_Fk_AES_encrypt_o(word,fileCnt,j,1);
     // 进行异或操作
-    skq_xor(cip2,*bitmap);
+    skq_xor(cip2,*bitmap,len);
     // 将fileCnt ++,同时重新上传
     do_add_file_cnt(fileCnt,word);
     // 删除这个pair对
-    hashmap_remove(global_hashmap,cip1, strlen(cip1));
+    hashmap_remove(global_hashmap,cip1, cip1L);
+    free(cip1);
+    free(cip2);
+
     return SUCCESS;
 }
 
@@ -181,37 +192,44 @@ RESULT skq_insert_data_2server(char * word,int j,struct hashmap_s *fileCnt,int *
     if(*bitmap == NULL){
         return ERROR;
     }
+    unsigned int len = 0;
+    // TODO 加密遇到了问题，cip1的长度不可求
     // 加密我们的关键字
-    char * cip1 = skq_Fk_AES_encrypt_o(word,fileCnt,j,0);
+    char * cip1 = skq_Fk_AES_encrypt_o(word,fileCnt,j,0,&len);
+
+    unsigned int cip1L = len;
     // 加密我们的Cij
-    char * cip2 = skq_Fk_AES_encrypt_o(word,fileCnt,j,1);
+    char * cip2 = skq_Fk_AES_encrypt_o(word,fileCnt,j,1,&len);
     // 进行异或
-    skq_xor(cip2,*bitmap);
+    skq_xor(cip2,*bitmap,len);
     // 上传到服务器
-    if(0 != hashmap_put(global_hashmap,cip1, strlen(cip1),*bitmap)){
+    if(0 != hashmap_put(global_hashmap,cip1, cip1L,*bitmap)){
         fprintf(stderr,"未上传数据至服务器\n");
         return ERROR;
     }
+    free(cip1);
+    free(cip2);
     return SUCCESS;
 }
 // 按位异或操作，按照长度短的进行异或操作
-RESULT skq_xor(char * key,int * bitmap){
+RESULT skq_xor(char * key,int * bitmap,unsigned int len){
     if(bitmap == NULL){
         fprintf(stderr,"bitmap是空值\n");
         fflush(stderr);
         return ERROR;
     }
-    // 进行异或操作
-    int len = (int)strlen(key);
-    for(int i = 0 ; i < len ; ++i){
+    for(unsigned int i = 0 ; i < len ; ++i){
         bitmap[i] = bitmap[i] ^ key[i];
     }
-    // TODO bitmap疑惑不完全
     return SUCCESS;
 }
 // 初始化一个data_owner
 RESULT skq_init_data_owner(data_owner * doo,int i){
-    if(0 != hashmap_create(INITIAL_SIZE,doo->hashmap_backward)){
+    doo->hashmap_forward = (struct hashmap_s *) malloc(sizeof (struct hashmap_s));
+    doo->hashmap_backward = (struct hashmap_s *) malloc(sizeof (struct hashmap_s));
+    doo->fileCnt = (struct hashmap_s *) malloc(sizeof (struct hashmap_s));
+
+    if(0 != hashmap_create(INITIAL_SIZE,doo->hashmap_forward)){
         fprintf(stderr,"初始化hashmap_backward失败\n");
         return ERROR;
     }
@@ -285,26 +303,26 @@ RESULT skq_read_file_2do(data_owner * doo,char * fileDirectory){
         fflush(stderr);
         return ERROR;
     }
-    char str[20];
     /**
      * 虚拟读取文件夹的内容
      * */
      // 虚拟一万个文件，每个文件里面给填充随机的字符串
-    for(int i = 0 ; i < 10000 ; i ++){
+    for(int i = 0 ; i < 100 ; i ++){
+
+        char * str = (char *) malloc(sizeof (char ) * 11);
+        struct ArrayList * arr = arrayList_init(110);
         for(int z = 0 ; z <= 100; z ++){
-            struct ArrayList * arr = arrayList_init(50);
-            int upper = (random() % z) + 1;
+            int upper = (random() % 10) + 1;
+            char * no = (char *) malloc(sizeof (char ) * upper);
             for(int m = 0 ; m < upper ; m ++){
-                // 随机生成关键字
-                char * no = (char *) malloc(sizeof (char ));
-                *no = 'a' + (random() % 3);
-                arr->push(arr,no);
+                no[m] = 'a' + (random() % 3);
             }
-            // 文件号转换为char类型
-            sprintf(str, "%d", i);
-            // 填充到前向表格中去
-            hashmap_put(doo->hashmap_forward,str, strlen(str),arr);
+            arr->push(arr,no);
         }
+        // 文件号转换为char类型
+        sprintf(str, "%d", i);
+        // 填充到前向表格中去
+        hashmap_put(doo->hashmap_forward,str, strlen(str),arr);
     }
     return SUCCESS;
 

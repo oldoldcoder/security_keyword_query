@@ -7,21 +7,22 @@
 #define SKQ_H
 
 #include "stdio.h"
-#include <openssl/aes.h>
+#include <openssl/hmac.h>
 #include "string.h"
 #include "hashmap.h"
-
+#include "utils.h"
 /*--------------------------常量定义-------------------------*/
-// 16位的AES的密钥
-#define AES_KEYWORD "42cb1661ebf50db9a9cd3f64ba7650e411e8d8029edbb3437bdb934f9890377e3f5f07d3c197054dd66ded53c65811c544aeb8eaad101e7a31250576fb7d4f28"
+// 64字节的AES的密钥
+#define AES_KEYWORD "ebf50db942cb16616ca13b104756cd3aebf50db942cb16616ca13b104756cd3d"
 #define RESULT int
-#define SUCCESS 4564
-#define ERROR 165495
 #define TRUE 1
 #define FALSE 0
+#define SUCCESS 4564
+#define ERROR 165495
 #define INITIAL_SIZE 2028
 // 服务器的大型hashmap
 extern struct hashmap_s * global_hashmap;
+extern const EVP_MD* MD;
 /*-------------------------结构定义区--------------------------*/
 typedef struct data_owner{
     // 正向索引
@@ -36,8 +37,10 @@ typedef struct data_owner{
     int is_back;
 }data_owner;
 /*-------------------------方法定义区--------------------------*/
+// 初始化函数
+void init_constant();
 // 加密函数
-RESULT skq_Fk_AES_encrypt(char * key,const unsigned char * plain, unsigned char * ciphertext);
+RESULT skq_Fk_AES_encrypt(char * key,const unsigned char * plain, unsigned char * ciphertext,unsigned int * len);
 // 将前向hashmap转换为反向的hashmap
 RESULT skq_create_backward_index(data_owner * doo);
 // do的filecnt + 1
@@ -47,10 +50,13 @@ void skq_upload_data_2server(data_owner * doo);
 // 进行查询
 RESULT skq_search_wi_from_server(char * word,int j ,struct hashmap_s *fileCnt,int ** bitmap);
 // 按位异或操作，按照长度短的进行异或操作
-RESULT skq_xor(char * key,int * bitmap);
+RESULT skq_xor(char * key,int * bitmap,unsigned int len);
 // 初始化一个data_owner
 RESULT skq_init_data_owner(data_owner * doo,int i);
 // 清空data_owner的内容
+/**
+ * 每个fileid可能都需要清除
+ * */
 RESULT skq_free_data_owner(data_owner * doo);
 // 读取内容然后到我们的data_owner里面去
 /**

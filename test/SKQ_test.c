@@ -9,6 +9,7 @@
 // 执行skq的测试
 
 void test(int i){
+    init_constant();
     // 创建数据源
     data_owner ** arr = (data_owner **) malloc(sizeof (data_owner *) * i);
     for(int j = 0 ; j < i ; ++j){
@@ -29,6 +30,7 @@ void test(int i){
                 printf("第%d号文件存在关键字%s\n",z,w);
             }
         }
+        fflush(stdout);
         // 重新给上传值
         skq_insert_data_2server("abc",arr[j]->i,arr[j]->fileCnt,bitmap);
     }
@@ -37,12 +39,14 @@ void test(int i){
     }
 }
 
-
 int main(){
+
 
     // 创建数据源，读取随机数据
     // 测试单数据源
     test(1);
+
     // 测试双数据源
     test(2);
+
 }
