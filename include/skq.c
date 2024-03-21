@@ -106,15 +106,16 @@ RESULT skq_create_backward_index(data_owner * doo){
         fprintf(stderr,"迭代过程出现了错误");
         return ERROR;
     }
+    doo->is_back = TRUE;
     return SUCCESS;
 }
 // do的filecnt + 1
-inline void do_add_file_cnt(data_owner * doo,char *c){
-    int * len = hashmap_get(doo->fileCnt,c, strlen(c));
+inline void do_add_file_cnt(struct hashmap_s * fileCnt,char *c){
+    int * len = hashmap_get(fileCnt,c, strlen(c));
     if(len == NULL){
         len = (int *) malloc(sizeof (int));
         * len = 0;
-        hashmap_put(doo->fileCnt,c, strlen(c),&len);
+        hashmap_put(fileCnt,c, strlen(c),&len);
     }
     // 拿出来 ++ 不需要放回去
     (*len)++;
@@ -160,18 +161,46 @@ RESULT skq_search_wi_from_server(char * word,int j ,struct hashmap_s * fileCnt,i
     char * cip1 = skq_Fk_AES_encrypt_o(word,fileCnt,j,0);
     // TODO word转换为key的流程
     *bitmap = hashmap_get(global_hashmap,cip1, strlen(cip1));
-    char * cip2 = skq_Fk_AES_encrypt_o(word,fileCnt,j,1);
-    // 进行异或操作
-    skq_xor(cip2,*bitmap);
     if(*bitmap == NULL){
         fprintf(stderr,"查询出错,未找到bitmap");
         fflush(stderr);
+        return ERROR;
+    }
+
+    char * cip2 = skq_Fk_AES_encrypt_o(word,fileCnt,j,1);
+    // 进行异或操作
+    skq_xor(cip2,*bitmap);
+    // 将fileCnt ++,同时重新上传
+    do_add_file_cnt(fileCnt,word);
+    // 删除这个pair对
+    hashmap_remove(global_hashmap,cip1, strlen(cip1));
+    return SUCCESS;
+}
+
+RESULT skq_insert_data_2server(char * word,int j,struct hashmap_s *fileCnt,int ** bitmap){
+    if(*bitmap == NULL){
+        return ERROR;
+    }
+    // 加密我们的关键字
+    char * cip1 = skq_Fk_AES_encrypt_o(word,fileCnt,j,0);
+    // 加密我们的Cij
+    char * cip2 = skq_Fk_AES_encrypt_o(word,fileCnt,j,1);
+    // 进行异或
+    skq_xor(cip2,*bitmap);
+    // 上传到服务器
+    if(0 != hashmap_put(global_hashmap,cip1, strlen(cip1),*bitmap)){
+        fprintf(stderr,"未上传数据至服务器\n");
         return ERROR;
     }
     return SUCCESS;
 }
 // 按位异或操作，按照长度短的进行异或操作
 RESULT skq_xor(char * key,int * bitmap){
+    if(bitmap == NULL){
+        fprintf(stderr,"bitmap是空值\n");
+        fflush(stderr);
+        return ERROR;
+    }
     // 进行异或操作
     int len = (int)strlen(key);
     for(int i = 0 ; i < len ; ++i){
@@ -195,6 +224,7 @@ RESULT skq_init_data_owner(data_owner * doo,int i){
         return ERROR;
     }
     doo->i = i;
+    doo->is_back = FALSE;
     return SUCCESS;
 }
 // 定义便利的时候清除内容的函数
@@ -250,29 +280,50 @@ RESULT skq_free_data_owner(data_owner * doo){
 }
 // 读取内容然后到我们的data_owner里面去
 RESULT skq_read_file_2do(data_owner * doo,char * fileDirectory){
-    // 从文件夹中读取数据，然后提取关键词进行组织逻辑
+    if(doo->hashmap_forward == NULL || doo->hashmap_backward == NULL || doo->fileCnt == NULL){
+        fprintf(stderr,"doo未完成初始化,错误\n");
+        fflush(stderr);
+        return ERROR;
+    }
+    char str[20];
+    /**
+     * 虚拟读取文件夹的内容
+     * */
+     // 虚拟一万个文件，每个文件里面给填充随机的字符串
+    for(int i = 0 ; i < 10000 ; i ++){
+        for(int z = 0 ; z <= 100; z ++){
+            struct ArrayList * arr = arrayList_init(50);
+            int upper = (random() % z) + 1;
+            for(int m = 0 ; m < upper ; m ++){
+                // 随机生成关键字
+                char * no = (char *) malloc(sizeof (char ));
+                *no = 'a' + (random() % 3);
+                arr->push(arr,no);
+            }
+            // 文件号转换为char类型
+            sprintf(str, "%d", i);
+            // 填充到前向表格中去
+            hashmap_put(doo->hashmap_forward,str, strlen(str),arr);
+        }
+    }
+    return SUCCESS;
+
 }
 // context传递为doo的filecnt，我们需要使用的
 static int encrypt_data(void* const context, struct hashmap_element_s* const e){
     int * bitmap = (int *)e->data;
     char * wi = (char *)e->key;
     data_owner  * doo = (data_owner *)context;
-    // 加密我们的关键字
-    char * cpi1 = skq_Fk_AES_encrypt_o(wi,doo->fileCnt,doo->i,0);
-    // 加密我们的Cij
-    char * cpi2 = skq_Fk_AES_encrypt_o(wi,doo->fileCnt,doo->i,1);
-    // 进行异或
-    skq_xor(cpi2,bitmap);
-    // 上传到服务器
-    hashmap_put(global_hashmap,cpi1, strlen(cpi1),cpi2);
-
+    skq_insert_data_2server(wi,doo->i,doo->fileCnt,&bitmap);
     return 0;
 }
 // 上传到服务器的setup算法;数据终究会上传到directMap中去
 RESULT skq_setup(data_owner * doo){
     int i = doo->i;
     // 建立反向索引
-    skq_create_backward_index(doo);
+    if(doo->is_back == FALSE){
+        skq_create_backward_index(doo);
+    }
     // 数据加密，对于每一个wi
     if(0 != hashmap_iterate_pairs(doo->hashmap_backward,encrypt_data,doo)){
         // 打印错误

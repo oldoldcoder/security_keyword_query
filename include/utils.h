@@ -93,10 +93,10 @@ void clear_bit(int *bitmap, int pos) {
 }
 
 // 测试位
-int test_bit(int *bitmap, int pos) {
+RESULT test_bit(int *bitmap, int pos) {
     int index = pos / ((int )(sizeof (int) * 8));
     int offset = pos % ((int )(sizeof (int) * 8));
-    return (bitmap[index] & (1 << offset)) != 0; // 测试对应位是否为1
+    return (bitmap[index] & (1 << offset)) != 0 ? TRUE : FALSE; // 测试对应位是否为1
 }
 int * create_bit_map(int len){
     int cap = 0;

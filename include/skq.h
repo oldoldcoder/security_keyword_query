@@ -32,6 +32,8 @@ typedef struct data_owner{
     struct hashmap_s * fileCnt;
     // 序号
     int i;
+    // 是否反向索引已经建立完毕
+    int is_back;
 }data_owner;
 /*-------------------------方法定义区--------------------------*/
 // 加密函数
@@ -39,7 +41,7 @@ RESULT skq_Fk_AES_encrypt(char * key,const unsigned char * plain, unsigned char 
 // 将前向hashmap转换为反向的hashmap
 RESULT skq_create_backward_index(data_owner * doo);
 // do的filecnt + 1
-inline void do_add_file_cnt(data_owner * doo,char *c);
+inline void do_add_file_cnt(struct hashmap_s * fileCnt,char *c);
 // 上传到服务器
 void skq_upload_data_2server(data_owner * doo);
 // 进行查询
@@ -51,7 +53,14 @@ RESULT skq_init_data_owner(data_owner * doo,int i);
 // 清空data_owner的内容
 RESULT skq_free_data_owner(data_owner * doo);
 // 读取内容然后到我们的data_owner里面去
+/**
+ * 目前是random的进行
+ * */
 RESULT skq_read_file_2do(data_owner * doo ,char * fileDirectory);
 // 上传到服务器的setup算法;数据终究会上传到directMap中去
 RESULT skq_setup(data_owner * doo);
+/**
+ * 查询结束之后重新插入新值到服务器中去
+ * */
+ RESULT skq_insert_data_2server(char * word,int j,struct hashmap_s * fileCnt,int ** bitmap);
 #endif//SKQ_H
