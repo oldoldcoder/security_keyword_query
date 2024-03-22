@@ -10,7 +10,7 @@
 #include "hashmap.h"
 #include "skq.h"
 #include "utils.h"
-
+char * caonima = NULL;
 struct hashmap_s * global_hashmap;
 const EVP_MD * MD;
 int is_init = FALSE;
@@ -58,6 +58,7 @@ static int transfer_map(void* const context, struct hashmap_element_s* const e) 
             set_bit(bitmap,file_id);
         }else{
             int * new = create_bit_map(-1);
+
             if(new == NULL){
                 fprintf(stderr,"申请bitmap的内存错误\n");
                 // 停止迭代
@@ -115,6 +116,7 @@ char * skq_Fk_AES_encrypt_o(char * word,struct hashmap_s *fileCnt,int j,int zn,u
         * a = 0;
         hashmap_put(fileCnt,word, strlen(word),a);
     }
+    fflush(stdout);
     char c1[12];
     char c2[12];
     sprintf(c1,"%d", *a);
@@ -133,21 +135,6 @@ char * skq_Fk_AES_encrypt_o(char * word,struct hashmap_s *fileCnt,int j,int zn,u
             plain[i] = c2[i - wordL - aL];
         }
     }
-//    for(int i = 0; i < lastL ; ++i){
-//        if(i < aL){
-//            plain[i] = c1[i];
-//        } else if(i < aL + jL){
-//            plain[i] = c2[i - aL - jL];
-//        }else{
-//            plain[i] = word[i];
-//        }
-//        if(i < wordL){
-//        }else if(i < (wordL + aL)){
-//            plain[i] = c1[i - wordL];
-//        }else{
-//            plain[i] = c2[i - wordL - aL];
-//        }
-//    }
 
     plain[lastL] = zn + '0';
     plain[lastL + 1] = '\0';
@@ -160,11 +147,9 @@ char * skq_Fk_AES_encrypt_o(char * word,struct hashmap_s *fileCnt,int j,int zn,u
 // 进行查询
 RESULT skq_search_wi_from_server(char * word,int j ,struct hashmap_s * fileCnt,int ** bitmap){
 
-
     unsigned int len = 0;
     // 首先获得了第一个
     char * cip1 = skq_Fk_AES_encrypt_o(word,fileCnt,j,0,&len);
-
     // 将cip1按照len值把二进制给她转换成字符串
     unsigned int cip1L = len;
     // TODO word转换为key的流程
@@ -174,6 +159,9 @@ RESULT skq_search_wi_from_server(char * word,int j ,struct hashmap_s * fileCnt,i
         fflush(stderr);
         return ERROR;
     }
+
+    fflush(stdout);
+
     char * cip2 = skq_Fk_AES_encrypt_o(word,fileCnt,j,1,&len);
 
     // 进行异或操作
@@ -181,7 +169,9 @@ RESULT skq_search_wi_from_server(char * word,int j ,struct hashmap_s * fileCnt,i
     // 将fileCnt ++,同时重新上传
     do_add_file_cnt(fileCnt,word);
     // 删除这个pair对
-    hashmap_remove(global_hashmap,cip1, cip1L);
+    if( 0 != hashmap_remove(global_hashmap,cip1, cip1L)){
+        printf("删除条目失败");
+    }
     free(cip1);
     free(cip2);
 
@@ -193,20 +183,23 @@ RESULT skq_insert_data_2server(char * word,int j,struct hashmap_s *fileCnt,int *
         return ERROR;
     }
     unsigned int len = 0;
-    // TODO 加密遇到了问题，cip1的长度不可求
     // 加密我们的关键字
     char * cip1 = skq_Fk_AES_encrypt_o(word,fileCnt,j,0,&len);
-
     unsigned int cip1L = len;
     // 加密我们的Cij
     char * cip2 = skq_Fk_AES_encrypt_o(word,fileCnt,j,1,&len);
     // 进行异或
     skq_xor(cip2,*bitmap,len);
-    // 上传到服务器
+
     if(0 != hashmap_put(global_hashmap,cip1, cip1L,*bitmap)){
         fprintf(stderr,"未上传数据至服务器\n");
         return ERROR;
     }
+    char * cip3 = skq_Fk_AES_encrypt_o(word,fileCnt,j,0,&len);
+    int * record = hashmap_get(global_hashmap,cip3, len);
+    caonima = cip3;
+
+
     free(cip1);
     free(cip2);
     return SUCCESS;
@@ -317,6 +310,10 @@ RESULT skq_read_file_2do(data_owner * doo,char * fileDirectory){
             for(int m = 0 ; m < upper ; m ++){
                 no[m] = 'a' + (random() % 3);
             }
+            // 如果存在abc就打印出来看看了
+            if(strcmp("abc",no) == 0){
+                printf("init阶段：%d存在abc\n",i);
+            }
             arr->push(arr,no);
         }
         // 文件号转换为char类型
@@ -332,6 +329,7 @@ static int encrypt_data(void* const context, struct hashmap_element_s* const e){
     int * bitmap = (int *)e->data;
     char * wi = (char *)e->key;
     data_owner  * doo = (data_owner *)context;
+
     skq_insert_data_2server(wi,doo->i,doo->fileCnt,&bitmap);
     return 0;
 }

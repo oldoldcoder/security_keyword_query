@@ -7,7 +7,6 @@
 #include "utils.h"
 
 // 执行skq的测试
-
 void test(int i){
     init_constant();
     // 创建数据源
@@ -32,8 +31,32 @@ void test(int i){
         }
         fflush(stdout);
         // 重新给上传值
+        skq_insert_data_2server(w,arr[j]->i,arr[j]->fileCnt,bitmap);
+        unsigned int len = 0;
+        char * cip3 = skq_Fk_AES_encrypt_o(w,arr[0]->fileCnt,1,0,&len);
+        int * record = hashmap_get(global_hashmap,cip3, len);
+        int * record2 = hashmap_get(global_hashmap,caonima, len);
+        printf("%d",j);
+    }
+    /*unsigned int len = 0;
+    char * cip3 = skq_Fk_AES_encrypt_o(w,arr[0]->fileCnt,1,0,&len);
+    int * record = hashmap_get(global_hashmap,cip3, len);
+    int * record2 = hashmap_get(global_hashmap,caonima, len);*/
+    printf("------------------------------------------------------------------------\n");
+    for(int j = 0 ; j < i ; j++){
+        int ** bitmap = (int **) malloc(sizeof (int *));
+        skq_search_wi_from_server(w,arr[j]->i,arr[j]->fileCnt,bitmap);
+        // 打印获得的值
+        for(int z = 0 ; z < BITMAP ; ++z){
+            if(test_bit(*bitmap,z) == TRUE){
+                printf("第%d号文件存在关键字%s\n",z,w);
+            }
+        }
+        fflush(stdout);
+        // 重新给上传值
         skq_insert_data_2server("abc",arr[j]->i,arr[j]->fileCnt,bitmap);
     }
+
     for(int j = 0 ; j < i ; j++){
         skq_free_data_owner(arr[j]);
     }

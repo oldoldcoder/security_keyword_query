@@ -23,6 +23,7 @@
 // 服务器的大型hashmap
 extern struct hashmap_s * global_hashmap;
 extern const EVP_MD* MD;
+extern char * caonima;
 /*-------------------------结构定义区--------------------------*/
 typedef struct data_owner{
     // 正向索引
@@ -69,4 +70,6 @@ RESULT skq_setup(data_owner * doo);
  * 查询结束之后重新插入新值到服务器中去
  * */
  RESULT skq_insert_data_2server(char * word,int j,struct hashmap_s * fileCnt,int ** bitmap);
+
+char * skq_Fk_AES_encrypt_o(char * word,struct hashmap_s *fileCnt,int j,int zn,unsigned int *retLen);
 #endif//SKQ_H

@@ -83,7 +83,8 @@ int * create_bit_map(int len){
     }else{
         cap = len / ((int )(sizeof (int) * 8));
     }
-    int * bit_map = malloc((cap + 1) * sizeof (int ));
+    int * bit_map =(int *) malloc((cap + 1) * sizeof (int ));
+    // 我已经置0过了
     memset(bit_map,0,(cap + 1) * sizeof (int ));
 
     return bit_map;
