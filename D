@@ -1,0 +1,41 @@
+[33mcommit 70a44bc77d0c952b8d8fc4b1ebe1f7d11c495b67[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: oldoldcoder <2742598536@qq.com>
+Date:   Sat Jul 6 11:22:25 2024 +0800
+
+    使用cpp重构了代码，将hashmap替换为stl的unorded_map，内存泄露暂未处理，对于JNA提供的接口暂时未处理
+
+[33mcommit 652b12194702791c22227b7edf98a57b82d9ff1a[m
+Author: oldoldcoder <2742598536@qq.com>
+Date:   Fri Mar 22 09:45:29 2024 +0800
+
+    使用的开源hashmap存在问题，两次读取获取的内容不一样，后续需要进行替换等操作，暂时不继续debug
+
+[33mcommit e2cc2ea01f7741bb2ad8f97eaea5b1e601ee45bb[m
+Author: oldoldcoder <2742598536@qq.com>
+Date:   Thu Mar 21 16:43:48 2024 +0800
+
+    内存泄露未测试
+
+[33mcommit 5994684bdf055888fd4f061018ee8bd9c2e80699[m
+Author: oldoldcoder <2742598536@qq.com>
+Date:   Thu Mar 21 10:27:07 2024 +0800
+
+    完善构建测试数据的方法
+
+[33mcommit a99ca715fa6627964aca85ed3709708429dd4214[m
+Author: oldoldcoder <2742598536@qq.com>
+Date:   Wed Mar 20 10:30:13 2024 +0800
+
+    0.0.2:测试前最后一版本，缺乏构建测试数据的方法
+
+[33mcommit 41334e8a2525bf455ffc158cc4c0a7d1af42bf10[m
+Author: oldoldcoder <2742598536@qq.com>
+Date:   Tue Mar 19 17:05:56 2024 +0800
+
+    0.0.1初版写完了
+
+[33mcommit 50d36b3e43da39d6e2fdd09f5e2e858841343c92[m
+Author: Hu Fei <83199123+oldoldcoder@users.noreply.github.com>
+Date:   Mon Mar 18 20:26:37 2024 +0800
+
+    Initial commit
