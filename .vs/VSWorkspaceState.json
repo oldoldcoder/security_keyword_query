@@ -7,9 +7,11 @@
   },
   "ExpandedNodes": [
     "",
+    "\\data",
     "\\include",
+    "\\out",
     "\\test"
   ],
-  "SelectedNode": "\\test\\SKQ_test.cpp",
+  "SelectedNode": "\\data\\data.txt",
   "PreviewInSolutionExplorer": false
 }

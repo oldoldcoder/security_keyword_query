@@ -3,28 +3,55 @@
   "WorkspaceRootPath": "D:\\study\\code\\ClionProject\\security_keyword_query\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\test\\SKQ_test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:test\\SKQ_test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\data\\data.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data\\data.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\skq.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\data\\query.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data\\query.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\.vs\\launch.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.vs\\launch.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\skq.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\skq.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\data\\res.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data\\res.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\test\\SKQ_test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:test\\SKQ_test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\utils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\data\\modify.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data\\modify.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.39.33321\\include\\list||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\utils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\utils.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\study\\code\\ClionProject\\security_keyword_query\\include\\hashmap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -44,67 +71,175 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "utils.h",
-              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.h",
-              "RelativeDocumentMoniker": "include\\utils.h",
-              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.h",
-              "RelativeToolTip": "include\\utils.h",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAAABQAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-07-06T02:26:39.366Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "skq.h",
-              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.h",
-              "RelativeDocumentMoniker": "include\\skq.h",
-              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.h",
-              "RelativeToolTip": "include\\skq.h",
-              "ViewState": "AQIAABgAAAAAAAAAAADgvx4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-07-05T13:13:01.701Z",
-              "EditorCaption": ""
+              "DocumentIndex": 4,
+              "Title": "skq.cpp",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.cpp",
+              "RelativeDocumentMoniker": "include\\skq.cpp",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.cpp",
+              "RelativeToolTip": "include\\skq.cpp",
+              "ViewState": "AQIAACUAAAAAAAAAAAAWwCkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-05T12:05:00.898Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
+              "Title": "SKQ_test.cpp",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\test\\SKQ_test.cpp",
+              "RelativeDocumentMoniker": "test\\SKQ_test.cpp",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\test\\SKQ_test.cpp",
+              "RelativeToolTip": "test\\SKQ_test.cpp",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABEAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-06T13:06:31.577Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "hashmap.h",
               "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\hashmap.h",
               "RelativeDocumentMoniker": "include\\hashmap.h",
               "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\hashmap.h",
               "RelativeToolTip": "include\\hashmap.h",
-              "ViewState": "AQIAAB0BAAAAAAAAAAAWwCgBAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-07-05T13:12:38.439Z",
+              "WhenOpened": "2024-07-05T13:12:38.439Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "skq.h",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.h",
+              "RelativeDocumentMoniker": "include\\skq.h",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.h",
+              "RelativeToolTip": "include\\skq.h",
+              "ViewState": "AQIAAEMAAAAAAAAAAIA0wFMAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-05T13:13:01.701Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CMakeLists.txt",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\CMakeLists.txt",
+              "RelativeDocumentMoniker": "CMakeLists.txt",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\CMakeLists.txt",
+              "RelativeToolTip": "CMakeLists.txt",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-07-05T03:30:11.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "query.txt",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\data\\query.txt",
+              "RelativeDocumentMoniker": "data\\query.txt",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\data\\query.txt",
+              "RelativeToolTip": "data\\query.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-07-06T09:07:14.004Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "utils.c",
-              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.c",
-              "RelativeDocumentMoniker": "include\\utils.c",
-              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.c",
-              "RelativeToolTip": "include\\utils.c",
-              "ViewState": "AQIAADkAAAAAAAAAAADgv0UAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-07-05T12:34:54.637Z",
+              "DocumentIndex": 2,
+              "Title": "launch.vs.json",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\.vs\\launch.vs.json",
+              "RelativeDocumentMoniker": ".vs\\launch.vs.json",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\.vs\\launch.vs.json",
+              "RelativeToolTip": ".vs\\launch.vs.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-06T12:43:02.516Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
+              "Title": "data.txt",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\data\\data.txt",
+              "RelativeDocumentMoniker": "data\\data.txt",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\data\\data.txt",
+              "RelativeToolTip": "data\\data.txt",
+              "ViewState": "AQIAANYDAAAAAAAAAAAowOgDAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-07-06T09:07:02.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "res.txt",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\data\\res.txt",
+              "RelativeDocumentMoniker": "data\\res.txt",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\data\\res.txt",
+              "RelativeToolTip": "data\\res.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-07-06T09:07:19.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "utils.cpp",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.cpp",
+              "RelativeDocumentMoniker": "include\\utils.cpp",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.cpp",
+              "RelativeToolTip": "include\\utils.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-05T12:34:54.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "modify.txt",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\data\\modify.txt",
+              "RelativeDocumentMoniker": "data\\modify.txt",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\data\\modify.txt",
+              "RelativeToolTip": "data\\modify.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-07-08T07:58:02.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-06T12:09:41.345Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "corecrt_wstdio.h",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\ucrt\\corecrt_wstdio.h",
+              "ToolTip": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\ucrt\\corecrt_wstdio.h",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACEAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-05T12:01:03.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "core_dispatch.h",
               "DocumentMoniker": "D:\\software\\lib\\OpenSSL\\include\\openssl\\core_dispatch.h",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\software\\lib\\OpenSSL\\include\\openssl\\core_dispatch.h",
@@ -112,58 +247,29 @@
               "RelativeToolTip": "..\\..\\..\\..\\software\\lib\\OpenSSL\\include\\openssl\\core_dispatch.h",
               "ViewState": "AQIAAEEAAAAAAAAAAAD4v0kAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-07-05T12:33:25.343Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-05T12:33:25.343Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "skq.cpp",
-              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.cpp",
-              "RelativeDocumentMoniker": "include\\skq.cpp",
-              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\skq.cpp",
-              "RelativeToolTip": "include\\skq.cpp",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAqwBAAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-07-05T12:05:00.898Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "corecrt_wstdio.h",
-              "DocumentMoniker": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\ucrt\\corecrt_wstdio.h",
-              "ToolTip": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\ucrt\\corecrt_wstdio.h",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAACEAAAANAAAA",
+              "DocumentIndex": 12,
+              "Title": "utils.h",
+              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.h",
+              "RelativeDocumentMoniker": "include\\utils.h",
+              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\include\\utils.h",
+              "RelativeToolTip": "include\\utils.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-07-05T12:01:03.512Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-06T02:26:39.366Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SKQ_test.cpp",
-              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\test\\SKQ_test.cpp",
-              "RelativeDocumentMoniker": "test\\SKQ_test.cpp",
-              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\test\\SKQ_test.cpp",
-              "RelativeToolTip": "test\\SKQ_test.cpp",
-              "ViewState": "AQIAACoAAAAAAAAAAAAAADAAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-07-05T11:50:06.528Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CMakeLists.txt",
-              "DocumentMoniker": "D:\\study\\code\\ClionProject\\security_keyword_query\\CMakeLists.txt",
-              "RelativeDocumentMoniker": "CMakeLists.txt",
-              "ToolTip": "D:\\study\\code\\ClionProject\\security_keyword_query\\CMakeLists.txt",
-              "RelativeToolTip": "CMakeLists.txt",
-              "ViewState": "AQIAAAYAAAAAAAAAAAApwBAAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-07-05T03:30:11.147Z",
-              "EditorCaption": ""
+              "DocumentIndex": 11,
+              "Title": "list",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.39.33321\\include\\list",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.39.33321\\include\\list",
+              "ViewState": "AQIAAIsAAAAAAAAAAAAAwJEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-06T07:41:46.403Z"
             }
           ]
         }

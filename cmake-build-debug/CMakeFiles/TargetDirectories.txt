@@ -1,4 +1,0 @@
-/root/heqi/encryption_algorithm/security_keyword_query/cmake-build-debug/CMakeFiles/SKQ.dir
-/root/heqi/encryption_algorithm/security_keyword_query/cmake-build-debug/CMakeFiles/SKQ_test.dir
-/root/heqi/encryption_algorithm/security_keyword_query/cmake-build-debug/CMakeFiles/edit_cache.dir
-/root/heqi/encryption_algorithm/security_keyword_query/cmake-build-debug/CMakeFiles/rebuild_cache.dir

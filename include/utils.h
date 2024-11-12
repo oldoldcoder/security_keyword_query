@@ -8,10 +8,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+using namespace std;
 /*------------------------------常量定义-----------------------------*/
 #define ARRAYLIST 100
-#define BITMAP 10000
+#define BITMAP 10000000
 #define RESULT int
 #define TRUE 1
 #define FALSE 0

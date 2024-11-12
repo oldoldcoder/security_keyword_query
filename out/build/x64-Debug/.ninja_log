@@ -1,5 +1,5 @@
 # ninja log v5
-7	340	7418858336144855	CMakeFiles/SKQ_test.dir/include/utils.c.obj	a4c02c4fbbcbdf87
-6	393	7418894542358372	CMakeFiles/SKQ_test.dir/test/SKQ_test.c.obj	13942e52bef76cf8
-1	400	7418894542368587	CMakeFiles/SKQ_test.dir/include/skq.c.obj	d9ad4d088173a62f
-408	773	7418894545726235	SKQ_test.exe	4a034a192f2ce601
+7	359	7421287111187366	CMakeFiles/security_keyword_query.dir/include/utils.cpp.obj	8a457ef2bd79424e
+2	455	7421404844686530	CMakeFiles/security_keyword_query.dir/include/skq.cpp.obj	b8704e2923548c9
+466	671	7421404844686530	security_keyword_query.dll	b86f63039e305ac8
+466	671	7421404844686530	security_keyword_query.lib	b86f63039e305ac8

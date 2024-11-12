@@ -1,4 +1,3 @@
-D:/study/code/ClionProject/security_keyword_query/out/build/x64-Debug/CMakeFiles/reverse_similarity_query.dir
-D:/study/code/ClionProject/security_keyword_query/out/build/x64-Debug/CMakeFiles/SKQ_test.dir
+D:/study/code/ClionProject/security_keyword_query/out/build/x64-Debug/CMakeFiles/security_keyword_query.dir
 D:/study/code/ClionProject/security_keyword_query/out/build/x64-Debug/CMakeFiles/edit_cache.dir
 D:/study/code/ClionProject/security_keyword_query/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

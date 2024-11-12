@@ -5,61 +5,29 @@
 */
 #include "skq.h"
 #include "utils.h"
+void printfTime(char* desc,clock_t start) {
+    double cpu_time_used = ((double)(clock() - start)) / CLOCKS_PER_SEC;
 
-// 执行skq的测试
-void test(int i) {
-	init_constant();
-	// 创建数据源
-	data_owner** arr = (data_owner**)malloc(sizeof(data_owner*) * i);
-	for (int j = 0; j < i; ++j) {
-		arr[j] = (data_owner*)malloc(sizeof(data_owner));
-		skq_init_data_owner(arr[j], 1);
-		skq_read_file_2do(arr[j], NULL);
-		skq_create_backward_index(arr[j]);
-
-		skq_setup(arr[j]);
-	}
-	char* w = "abc";
-	// 进行查询
-	for (int j = 0; j < i; j++) {
-		int** bitmap = (int**)malloc(sizeof(int*));
-		skq_search_wi_from_server(w, arr[j]->i, arr[j]->fileCnt, bitmap);
-		// 打印获得的值
-		for (int z = 0; z < BITMAP; ++z) {
-			if (test_bit(*bitmap, z) == TRUE) {
-				printf("%d th file include %s\n", z, w);
-			}
-		}
-		fflush(stdout);
-		// 重新给上传值
-		skq_insert_data_2server(w, arr[j]->i, arr[j]->fileCnt, bitmap);
-	}
-
-	printf("------------------------------------------------------------------------\n");
-	for (int j = 0; j < i; j++) {
-		int** bitmap = (int**)malloc(sizeof(int*));
-		skq_search_wi_from_server(w, arr[j]->i, arr[j]->fileCnt, bitmap);
-		// 打印获得的值
-		for (int z = 0; z < BITMAP; ++z) {
-			if (test_bit(*bitmap, z) == TRUE) {
-				printf("%d th file include %s\n", z, w);
-			}
-		}
-		fflush(stdout);
-		// 重新给上传值
-		skq_insert_data_2server("abc", arr[j]->i, arr[j]->fileCnt, bitmap);
-	}
-
-	for (int j = 0; j < i; j++) {
-
-		skq_free_data_owner(arr[j]);
-	}
+    printf("%s used: %f seconds\n",desc, cpu_time_used);
 }
 
+
 int main() {
+    clock_t start, end;
+    start = clock();
+    data_owner dataOwner;
+    init_constant();
+    int initResult = init_algo("/root/heqi/encryption_algorithm/security_keyword_query/data/data.txt",&dataOwner);
+    if (initResult !=  SUCCESS) {
+        printf("Failed to initialize algorithm");
+    }
+    printfTime("init",start);
+    start = clock();
 
-	// 创建数据源，读取随机数据
-	// 测试单数据源
-	test(1);
+    int queryResult = query_algo(&dataOwner,"/root/heqi/encryption_algorithm/security_keyword_query/data/query.txt","D:\\study\\code\\ClionProject\\security_keyword_query\\data\\res.txt");
+    if (queryResult != SUCCESS) {
+        printf("Failed to query_algo algorithm");
+    }
 
+    printfTime("query",start);
 }

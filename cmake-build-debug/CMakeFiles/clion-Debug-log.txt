@@ -1,4 +1,0 @@
-Cannot generate into D:\study\code\ClionProject\security_keyword_query\cmake-build-debug
-It is already used for project \root\heqi\encryption_algorithm\security_keyword_query
-
-Please either delete it manually or select another generation directory
